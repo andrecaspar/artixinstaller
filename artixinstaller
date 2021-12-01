@@ -1,0 +1,90 @@
+#!/bin/bash
+
+root=$(lsblk -f | grep -i root | grep -v loop | awk "{print \$1}" | cut -c 7-)
+home=$(lsblk -f | grep -i home | grep -v loop | awk "{print \$1}" | cut -c 7-)
+
+if [ "$1" != "part2" ]; then
+
+if [ "$1" = "wipehome" ]; then
+    mkfs.ext4 -F -L home /dev/$home
+fi
+
+mkfs.ext4 -F -L root /dev/$root
+mount /dev/disk/by-label/root /mnt
+mkdir /mnt/home
+mount /dev/disk/by-label/home /mnt/home
+
+basestrap /mnt base base-devel linux-zen linux-firmware \
+               openrc elogind-openrc xorg pulseaudio    \
+               dhcpcd connman-openrc wpa_supplicant     \
+               grub os-prober ntfs-3g doas vim man      \
+               bspwm polybar sxhkd python python-pip    \
+               git htop neofetch p7zip figlet wget mpv  \
+               youtube-dl ffmpeg pavucontrol xclip go   \
+               imagemagick
+
+fstabgen -U /mnt >> /mnt/etc/fstab
+
+cp artixinstaller /mnt/
+chmod +x /mnt/artixinstaller
+artix-chroot /mnt ./artixinstaller part2
+
+else
+
+useradd -m a
+echo -n a:a | chpasswd
+echo -n root:a | chpasswd
+
+echo "permit nopass a" > /etc/doas.conf
+
+chmod +w /etc/sudoers
+echo -n "a ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+sudo -u a mkdir /home/a/Sources
+cd /home/a/Sources
+
+sudo -u a git clone https://aur.archlinux.org/pikaur.git
+cd pikaur
+yes | sudo -u a makepkg -fsri
+cd ..
+rm -rf pikaur/
+
+sudo -u a git clone https://github.com/Earnestly/sx
+cd sx
+make install
+cd ..
+rm -rf sx
+
+yes | sudo -u a pikaur -S --noedit librewolf-bin nerd-fonts-complete \
+                                   alacritty-ligatures-git setroot   \
+                                   gallery-dl spacefm
+
+pip install pywal colorthief colorz haishoku
+
+cd
+go get github.com/thefryscorer/schemer2
+mv go/bin/schemer2 /usr/local/bin
+rm -rf go
+
+pacman -R -noconfirm sudo
+
+ln -sf /usr/share/zoneinfo/America/Nuuk /etc/localtime
+hwclock --systohc
+
+echo -e "en_US.UTF-8 UTF-8\nen_US ISO-8859-1" >> /etc/locale.gen
+locale-gen
+echo -e "export LANG=\"en_US.UTF-8\"\nexport LC_COLLATE=\"C\"" >> /etc/locale.conf
+
+echo -n artix > /etc/hostname
+echo -n "hostname=\"artix\"" > /etc/conf.d/hostname
+echo -e "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 artix" >> /etc/hosts
+
+echo "permit persist a" > /etc/doas.conf
+
+grub-install /dev/sda
+echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
+update-grub
+
+reboot
+
+fi
