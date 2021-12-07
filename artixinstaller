@@ -67,7 +67,7 @@ mv go/bin/schemer2 /usr/local/bin
 rm -rf go
 
 sudo -u a wget https://apprepo.de/appimage/download/gimp
-sudo -u a wget wget https://github.com/Swordfish90/cool-retro-term/releases/download/1.1.1/Cool-Retro-Term-1.1.1-x86_64.AppImage
+sudo -u a wget https://github.com/Swordfish90/cool-retro-term/releases/download/1.1.1/Cool-Retro-Term-1.1.1-x86_64.AppImage
 mv gimp /usr/local/bin/
 mv Cool-Retro-Term-1.1.1-x86_64.AppImage /usr/local/bin/coolretroterm
 chmod +x /usr/local/bin/gimp
@@ -87,6 +87,7 @@ echo -n "hostname=\"artix\"" > /etc/conf.d/hostname
 echo -e "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 artix" >> /etc/hosts
 
 echo "permit persist a" > /etc/doas.conf
+echo "chmod a+w /sys/class/backlight/intel_backlight/brightness" >> /etc/doas.conf
 
 grub-install /dev/sda
 echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
