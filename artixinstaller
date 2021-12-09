@@ -93,6 +93,8 @@ grub-install /dev/sda
 echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
 update-grub
 
+mkdir /mnt/usb1 /mnt/usb2 /mnt/usb3 /mnt/usb4 /mnt/sdcard
+
 reboot
 
 fi
