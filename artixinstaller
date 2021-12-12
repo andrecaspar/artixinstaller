@@ -57,7 +57,7 @@ rm -rf sx
 
 yes | sudo -u a pikaur -S --noedit librewolf-bin nerd-fonts-complete \
                                    alacritty-ligatures-git setroot   \
-                                   gallery-dl spacefm btop
+                                   gallery-dl spacefm btop sxiv-git
 
 pip install pywal colorthief colorz haishoku
 
