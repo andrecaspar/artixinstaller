@@ -73,6 +73,9 @@ mv Cool-Retro-Term-1.1.1-x86_64.AppImage /usr/local/bin/coolretroterm
 chmod +x /usr/local/bin/gimp
 chmod +x /usr/local/bin/coolretroterm
 
+ln -s file xwal /usr/local/bin/
+chmod a+x /usr/local/bin/xwal
+
 pacman -R -noconfirm sudo
 
 ln -sf /usr/share/zoneinfo/America/Nuuk /etc/localtime
