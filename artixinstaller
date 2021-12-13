@@ -17,7 +17,7 @@ mount /dev/disk/by-label/home /mnt/home
 basestrap /mnt base base-devel linux-zen linux-firmware \
                openrc elogind-openrc xorg pulseaudio    \
                dhcpcd connman-openrc wpa_supplicant     \
-               grub os-prober ntfs-3g doas vim man      \
+               grub os-prober ntfs-3g doas gvim man     \
                bspwm polybar sxhkd python python-pip    \
                git htop neofetch p7zip figlet wget mpv  \
                youtube-dl ffmpeg pavucontrol xclip go   \
