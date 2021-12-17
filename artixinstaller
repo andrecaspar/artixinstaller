@@ -55,11 +55,11 @@ make install
 cd ..
 rm -rf sx
 
-yes | sudo -u a pikaur -S --noedit librewolf-bin nerd-fonts-complete \
+yes | sudo -u a pikaur -S --noedit rust-nightly-bin librewolf-bin    \
                                    alacritty-ligatures-git setroot   \
                                    gallery-dl spacefm btop sxiv-git  \
                                    cava xwinwrap-git cmatrix-git     \
-                                   wavemon-git
+                                   wavemon-git nerd-fonts-complete
 
 pip install pywal colorthief colorz haishoku
 
