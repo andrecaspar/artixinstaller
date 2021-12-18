@@ -63,7 +63,6 @@ yes | sudo -u a pikaur -S --noedit rust-nightly-bin librewolf-bin    \
 
 pip install pywal colorthief colorz haishoku
 
-cd
 go get github.com/thefryscorer/schemer2
 mv go/bin/schemer2 /usr/local/bin
 rm -rf go
