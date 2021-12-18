@@ -43,13 +43,13 @@ echo -n "a ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 sudo -u a mkdir /home/a/Sources
 cd /home/a/Sources
 
-git clone https://aur.archlinux.org/pikaur.git
+sudo -u a git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 yes | sudo -u a makepkg -fsri
 cd ..
 rm -rf pikaur/
 
-git clone https://github.com/Earnestly/sx
+sudo -u a git clone https://github.com/Earnestly/sx
 cd sx
 make install
 cd ..
@@ -63,7 +63,7 @@ yes | sudo -u a pikaur -S --noedit rust-nightly-bin librewolf-bin    \
 
 pip install pywal colorthief colorz haishoku
 
-go get github.com/thefryscorer/schemer2
+sudo -u a go get github.com/thefryscorer/schemer2
 mv go/bin/schemer2 /usr/local/bin
 rm -rf go
 
@@ -74,7 +74,7 @@ mv Cool-Retro-Term-1.1.1-x86_64.AppImage /usr/local/bin/coolretroterm
 chmod a+x /usr/local/bin/gimp
 chmod a+x /usr/local/bin/coolretroterm
 
-git clone https://github.com/zsadroh/xwal
+sudo -u a git clone https://github.com/zsadroh/xwal
 ln -s file /xwal/xwal /usr/local/bin/
 chmod a+x /usr/local/bin/xwal
 
@@ -103,4 +103,3 @@ mkdir /mnt/usb1 /mnt/usb2 /mnt/usb3 /mnt/usb4 /mnt/sdcard
 reboot
 
 fi
-#you do not have write permission $BUILDDIR /home/a/Sources/pikaur
