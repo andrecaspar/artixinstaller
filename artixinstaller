@@ -68,12 +68,12 @@ go get github.com/thefryscorer/schemer2
 mv go/bin/schemer2 /usr/local/bin
 rm -rf go
 
-sudo -u a wget https://apprepo.de/appimage/download/gimp
-sudo -u a wget https://github.com/Swordfish90/cool-retro-term/releases/download/1.1.1/Cool-Retro-Term-1.1.1-x86_64.AppImage
+wget https://apprepo.de/appimage/download/gimp
+wget https://github.com/Swordfish90/cool-retro-term/releases/download/1.1.1/Cool-Retro-Term-1.1.1-x86_64.AppImage
 mv gimp /usr/local/bin/
 mv Cool-Retro-Term-1.1.1-x86_64.AppImage /usr/local/bin/coolretroterm
-chmod +x /usr/local/bin/gimp
-chmod +x /usr/local/bin/coolretroterm
+chmod a+x /usr/local/bin/gimp
+chmod a+x /usr/local/bin/coolretroterm
 
 git clone https://github.com/zsadroh/xwal
 ln -s file /xwal/xwal /usr/local/bin/
