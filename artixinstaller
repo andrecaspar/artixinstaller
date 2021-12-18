@@ -55,6 +55,8 @@ make install
 cd ..
 rm -rf sx
 
+cd # test solve error build create dir
+
 yes | sudo -u a pikaur -S --noedit rust-nightly-bin librewolf-bin    \
                                    alacritty-ligatures-git setroot   \
                                    gallery-dl spacefm btop-git cava  \
