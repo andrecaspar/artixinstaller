@@ -103,4 +103,4 @@ mkdir /mnt/usb1 /mnt/usb2 /mnt/usb3 /mnt/usb4 /mnt/sdcard
 reboot
 
 fi
-#setroot is failing to build. Maybe replace with feh
+#builds failing due to permission. Strange, VM only. Ownership of home maybe?
