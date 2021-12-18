@@ -103,4 +103,4 @@ mkdir /mnt/usb1 /mnt/usb2 /mnt/usb3 /mnt/usb4 /mnt/sdcard
 reboot
 
 fi
-#builds failing due to permission. Strange, VM only. Ownership of home maybe?
+#you do not have write permission $BUILDDIR /home/a/Sources/pikaur
