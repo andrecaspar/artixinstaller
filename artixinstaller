@@ -43,13 +43,13 @@ echo -n "a ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 sudo -u a mkdir /home/a/Sources
 cd /home/a/Sources
 
-sudo -u a git clone https://aur.archlinux.org/pikaur.git
+git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 yes | sudo -u a makepkg -fsri
 cd ..
 rm -rf pikaur/
 
-sudo -u a git clone https://github.com/Earnestly/sx
+git clone https://github.com/Earnestly/sx
 cd sx
 make install
 cd ..
