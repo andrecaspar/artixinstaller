@@ -59,7 +59,8 @@ yes | sudo -u a pikaur -S --noedit rust-nightly-bin librewolf-bin    \
                                    alacritty-ligatures-git setroot   \
                                    gallery-dl spacefm btop-git cava  \
                                    sxiv-git xwinwrap-git wavemon-git \
-                                   cmatrix-git nerd-fonts-complete
+                                   cmatrix-git nerd-fonts-complete   \
+                                   downgrade
 
 pip install pywal colorthief colorz haishoku
 
