@@ -21,7 +21,7 @@ basestrap /mnt base base-devel linux-zen linux-firmware \
                bspwm polybar sxhkd python python-pip    \
                git htop neofetch p7zip figlet wget mpv  \
                youtube-dl ffmpeg pavucontrol xclip go   \
-               imagemagick rofi
+               imagemagick rofi feh
 
 fstabgen -U /mnt >> /mnt/etc/fstab
 
@@ -56,7 +56,7 @@ cd ..
 rm -rf sx
 
 yes | sudo -u a pikaur -S --noedit rust-nightly-bin librewolf-bin    \
-                                   alacritty-ligatures-git setroot   \
+                                   alacritty-ligatures-git iftop-git \
                                    gallery-dl spacefm btop-git cava  \
                                    sxiv-git xwinwrap-git wavemon-git \
                                    cmatrix-git nerd-fonts-complete   \
