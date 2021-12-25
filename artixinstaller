@@ -18,10 +18,10 @@ basestrap /mnt base base-devel linux-zen linux-firmware \
                openrc elogind-openrc xorg pulseaudio    \
                dhcpcd connman-openrc wpa_supplicant     \
                grub os-prober ntfs-3g doas gvim man     \
-               bspwm polybar sxhkd python python-pip    \
+               bspwm rofi feh sxhkd python python-pip   \
                git htop neofetch p7zip figlet wget mpv  \
                youtube-dl ffmpeg pavucontrol xclip go   \
-               imagemagick rofi feh
+               imagemagick
 
 fstabgen -U /mnt >> /mnt/etc/fstab
 
@@ -67,6 +67,12 @@ pip install pywal colorthief colorz haishoku
 sudo -u a go get github.com/thefryscorer/schemer2
 mv go/bin/schemer2 /usr/local/bin
 rm -rf go
+
+sudo -u a git clone https://github.com/elkowar/eww
+cd eww
+cargo build --release
+cd ..
+rm -rf eww
 
 wget https://apprepo.de/appimage/download/gimp
 wget https://github.com/Swordfish90/cool-retro-term/releases/download/1.1.1/Cool-Retro-Term-1.1.1-x86_64.AppImage
