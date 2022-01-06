@@ -86,6 +86,8 @@ sudo -u a git clone https://github.com/zsadroh/xwal
 ln -s file /xwal/xwal /usr/local/bin/
 chmod a+x /usr/local/bin/xwal
 
+sudo -u a git clone https://github.com/zsadroh/dotfiles .
+
 pacman -R -noconfirm sudo
 
 ln -sf /usr/share/zoneinfo/America/Nuuk /etc/localtime
