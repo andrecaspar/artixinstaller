@@ -21,7 +21,7 @@ basestrap /mnt base base-devel linux-zen linux-firmware \
                bspwm rofi feh sxhkd python python-pip   \
                git htop neofetch p7zip figlet wget mpv  \
                youtube-dl ffmpeg pavucontrol xclip go   \
-               imagemagick
+               imagemagick gparted
 
 fstabgen -U /mnt >> /mnt/etc/fstab
 
