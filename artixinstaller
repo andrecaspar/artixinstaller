@@ -66,7 +66,7 @@ yes | sudo -u a pikaur -S --noedit rust-nightly-bin librewolf-bin    \
                                    gallery-dl spacefm btop-git cava  \
                                    sxiv-git xwinwrap-git wavemon-git \
                                    cmatrix-git nerd-fonts-complete   \
-                                   downgrade
+                                   downgrade testdisk-wip
 
 pip install pywal colorthief colorz haishoku
 
