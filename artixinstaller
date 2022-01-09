@@ -40,11 +40,12 @@ echo "permit nopass a" > /etc/doas.conf
 chmod +w /etc/sudoers
 echo -n "a ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-sudo -u a mkdir /home/a/Sources
-
+cd /home/a/
 sudo -u a git clone https://github.com/zsadroh/dotfiles .
 
-cd /home/a/Sources
+sudo -u a mkdir Sources
+cd Sources
+
 sudo -u a git clone https://github.com/zsadroh/xwal
 ln -s file /xwal/xwal /usr/local/bin/
 chmod a+x /usr/local/bin/xwal
