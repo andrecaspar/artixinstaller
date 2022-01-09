@@ -41,7 +41,7 @@ chmod +w /etc/sudoers
 echo -n "a ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 cd /home/a/
-sudo -u a git clone https://github.com/zsadroh/dotfiles .
+#sudo -u a git clone https://github.com/zsadroh/dotfiles .
 
 sudo -u a mkdir Sources
 cd Sources
