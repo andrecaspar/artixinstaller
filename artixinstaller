@@ -78,6 +78,8 @@ rm -rf go
 sudo -u a git clone https://github.com/elkowar/eww
 cd eww
 cargo build --release
+chmod a+x target/release/eww
+mv target/release/eww /usr/local/bin/
 cd ..
 rm -rf eww
 
