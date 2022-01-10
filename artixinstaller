@@ -4,116 +4,120 @@ root=$(lsblk -f | grep -i root | grep -v loop | awk "{print \$1}" | cut -c 7-)
 home=$(lsblk -f | grep -i home | grep -v loop | awk "{print \$1}" | cut -c 7-)
 
 if [ "$1" != "part2" ]; then
+    if [ "$1" = "wipehome" ]; then
+        mkfs.ext4 -F -L home /dev/$home
+    fi
 
-if [ "$1" = "wipehome" ]; then
-    mkfs.ext4 -F -L home /dev/$home
-fi
+    mkfs.ext4 -F -L root /dev/$root
+    mount /dev/disk/by-label/root /mnt
+    mkdir /mnt/home
+    mount /dev/disk/by-label/home /mnt/home
 
-mkfs.ext4 -F -L root /dev/$root
-mount /dev/disk/by-label/root /mnt
-mkdir /mnt/home
-mount /dev/disk/by-label/home /mnt/home
+    basestrap /mnt base base-devel linux-zen linux-firmware \
+                   openrc elogind-openrc xorg pulseaudio    \
+                   dhcpcd connman-openrc wpa_supplicant     \
+                   grub os-prober ntfs-3g doas gvim man     \
+                   bspwm rofi feh sxhkd python python-pip   \
+                   git htop neofetch p7zip figlet wget mpv  \
+                   youtube-dl ffmpeg pavucontrol xclip go   \
+                   imagemagick gparted
 
-basestrap /mnt base base-devel linux-zen linux-firmware \
-               openrc elogind-openrc xorg pulseaudio    \
-               dhcpcd connman-openrc wpa_supplicant     \
-               grub os-prober ntfs-3g doas gvim man     \
-               bspwm rofi feh sxhkd python python-pip   \
-               git htop neofetch p7zip figlet wget mpv  \
-               youtube-dl ffmpeg pavucontrol xclip go   \
-               imagemagick gparted
+    fstabgen -U /mnt >> /mnt/etc/fstab
 
-fstabgen -U /mnt >> /mnt/etc/fstab
+    cp artixinstaller /mnt/
+    chmod +x /mnt/artixinstaller
 
-cp artixinstaller /mnt/
-chmod +x /mnt/artixinstaller
-artix-chroot /mnt ./artixinstaller part2
-
+    if [ "$1" != "wipehome" ]; then
+        artix-chroot /mnt ./artixinstaller part2 wipedhome
+    else
+        artix-chroot /mnt ./artixinstaller part2
+    fi
 else
+    useradd -m a
+    echo -n a:a | chpasswd
+    echo -n root:a | chpasswd
 
-useradd -m a
-echo -n a:a | chpasswd
-echo -n root:a | chpasswd
+    echo "permit nopass a" > /etc/doas.conf
 
-echo "permit nopass a" > /etc/doas.conf
+    chmod +w /etc/sudoers
+    echo -n "a ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-chmod +w /etc/sudoers
-echo -n "a ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+    cd /home/a/
+    if [ "$2" != "wipedhome" ]; then
+        rm -rf *
+        sudo -u a git clone https://github.com/zsadroh/dotfiles .
+    else
 
-cd /home/a/
-sudo -u a git clone https://github.com/zsadroh/dotfiles
+    sudo -u a mkdir Sources
+    cd Sources
 
-sudo -u a mkdir Sources
-cd Sources
+    sudo -u a git clone https://github.com/zsadroh/xwal
+    ln -s file /xwal/xwal /usr/local/bin/
+    chmod a+x /usr/local/bin/xwal
 
-sudo -u a git clone https://github.com/zsadroh/xwal
-ln -s file /xwal/xwal /usr/local/bin/
-chmod a+x /usr/local/bin/xwal
+    sudo -u a git clone https://aur.archlinux.org/pikaur.git
+    cd pikaur
+    yes | sudo -u a makepkg -fsri
+    cd ..
+    rm -rf pikaur/
 
-sudo -u a git clone https://aur.archlinux.org/pikaur.git
-cd pikaur
-yes | sudo -u a makepkg -fsri
-cd ..
-rm -rf pikaur/
+    sudo -u a git clone https://github.com/Earnestly/sx
+    cd sx
+    make install
+    cd ..
+    rm -rf sx
 
-sudo -u a git clone https://github.com/Earnestly/sx
-cd sx
-make install
-cd ..
-rm -rf sx
+    yes | sudo -u a pikaur -S --noedit rust-nightly-bin librewolf-bin    \
+                                       alacritty-ligatures-git iftop-git \
+                                       gallery-dl spacefm btop-git cava  \
+                                       sxiv-git xwinwrap-git wavemon-git \
+                                       cmatrix-git nerd-fonts-complete   \
+                                       downgrade testdisk-wip
 
-yes | sudo -u a pikaur -S --noedit rust-nightly-bin librewolf-bin    \
-                                   alacritty-ligatures-git iftop-git \
-                                   gallery-dl spacefm btop-git cava  \
-                                   sxiv-git xwinwrap-git wavemon-git \
-                                   cmatrix-git nerd-fonts-complete   \
-                                   downgrade testdisk-wip
+    pip install pywal colorthief colorz haishoku
 
-pip install pywal colorthief colorz haishoku
+    sudo -u a go get github.com/thefryscorer/schemer2
+    mv go/bin/schemer2 /usr/local/bin
+    rm -rf go
+    rm -rf /home/a/go
 
-sudo -u a go get github.com/thefryscorer/schemer2
-mv go/bin/schemer2 /usr/local/bin
-rm -rf go
-rm -rf /home/a/go
+    sudo -u a git clone https://github.com/elkowar/eww
+    cd eww
+    cargo build --release
+    chmod a+x target/release/eww
+    mv target/release/eww /usr/local/bin/
+    cd ..
+    rm -rf eww
 
-sudo -u a git clone https://github.com/elkowar/eww
-cd eww
-cargo build --release
-chmod a+x target/release/eww
-mv target/release/eww /usr/local/bin/
-cd ..
-rm -rf eww
+    wget https://apprepo.de/appimage/download/gimp
+    mv gimp /usr/local/bin/
+    chmod a+x /usr/local/bin/gimp
 
-wget https://apprepo.de/appimage/download/gimp
-mv gimp /usr/local/bin/
-chmod a+x /usr/local/bin/gimp
+    wget https://github.com/Swordfish90/cool-retro-term/releases/download/1.1.1/Cool-Retro-Term-1.1.1-x86_64.AppImage
+    mv Cool-Retro-Term-1.1.1-x86_64.AppImage /usr/local/bin/coolretroterm
+    chmod a+x /usr/local/bin/coolretroterm
 
-wget https://github.com/Swordfish90/cool-retro-term/releases/download/1.1.1/Cool-Retro-Term-1.1.1-x86_64.AppImage
-mv Cool-Retro-Term-1.1.1-x86_64.AppImage /usr/local/bin/coolretroterm
-chmod a+x /usr/local/bin/coolretroterm
+    pacman -R -noconfirm sudo
 
-pacman -R -noconfirm sudo
+    ln -sf /usr/share/zoneinfo/America/Nuuk /etc/localtime
+    hwclock --systohc
 
-ln -sf /usr/share/zoneinfo/America/Nuuk /etc/localtime
-hwclock --systohc
+    echo -e "en_US.UTF-8 UTF-8\nen_US ISO-8859-1" >> /etc/locale.gen
+    locale-gen
+    echo -e "export LANG=\"en_US.UTF-8\"\nexport LC_COLLATE=\"C\"" >> /etc/locale.conf
 
-echo -e "en_US.UTF-8 UTF-8\nen_US ISO-8859-1" >> /etc/locale.gen
-locale-gen
-echo -e "export LANG=\"en_US.UTF-8\"\nexport LC_COLLATE=\"C\"" >> /etc/locale.conf
+    echo -n artix > /etc/hostname
+    echo -n "hostname=\"artix\"" > /etc/conf.d/hostname
+    echo -e "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 artix" >> /etc/hosts
 
-echo -n artix > /etc/hostname
-echo -n "hostname=\"artix\"" > /etc/conf.d/hostname
-echo -e "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 artix" >> /etc/hosts
+    echo "permit persist a" > /etc/doas.conf
+    echo "permit nopass a cmd chmod args a+w /sys/class/backlight/intel_backlight/brightness" >> /etc/doas.conf
 
-echo "permit persist a" > /etc/doas.conf
-echo "permit nopass a cmd chmod args a+w /sys/class/backlight/intel_backlight/brightness" >> /etc/doas.conf
+    grub-install /dev/sda
+    echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
+    update-grub
 
-grub-install /dev/sda
-echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
-update-grub
+    mkdir /mnt/usb1 /mnt/usb2 /mnt/usb3 /mnt/usb4 /mnt/sdcard
 
-mkdir /mnt/usb1 /mnt/usb2 /mnt/usb3 /mnt/usb4 /mnt/sdcard
-
-reboot
-
+    reboot
 fi
