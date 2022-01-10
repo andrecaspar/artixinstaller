@@ -46,7 +46,7 @@ else
     if [ "$2" != "wipedhome" ]; then
         rm -rf *
         sudo -u a git clone https://github.com/zsadroh/dotfiles .
-    else
+    fi
 
     sudo -u a mkdir Sources
     cd Sources
