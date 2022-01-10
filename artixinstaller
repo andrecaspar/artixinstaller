@@ -74,10 +74,7 @@ pip install pywal colorthief colorz haishoku
 sudo -u a go get github.com/thefryscorer/schemer2
 mv go/bin/schemer2 /usr/local/bin
 rm -rf go
-
-pwd
-ls
-read
+rm -rf /home/a/go
 
 sudo -u a git clone https://github.com/elkowar/eww
 cd eww
