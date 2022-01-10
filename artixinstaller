@@ -72,7 +72,8 @@ else
                                        gallery-dl spacefm btop-git cava  \
                                        sxiv-git xwinwrap-git wavemon-git \
                                        cmatrix-git nerd-fonts-complete   \
-                                       downgrade testdisk-wip
+                                       downgrade figlet-fonts            \
+                                       testdisk-wip
 
     pip install pywal colorthief colorz haishoku
 
