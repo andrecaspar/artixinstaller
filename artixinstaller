@@ -44,7 +44,7 @@ else
 
     cd /home/a/
     if [ "$2" != "wipedhome" ]; then
-        rm -rf *
+        rm -rf ./* ./.*
         sudo -u a git clone https://github.com/zsadroh/dotfiles .
     fi
 
