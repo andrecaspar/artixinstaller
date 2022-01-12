@@ -51,9 +51,10 @@ else
     sudo -u a mkdir Sources
     cd Sources
 
-    sudo -u a git clone https://github.com/zsadroh/xwal
+    sudo -u a git clone https://github.com/zsadroh/xwal .
     ln -s file /xwal/xwal /usr/local/bin/
     chmod a+x /usr/local/bin/xwal
+    rm LICENSE
 
     sudo -u a git clone https://aur.archlinux.org/pikaur.git
     cd pikaur
