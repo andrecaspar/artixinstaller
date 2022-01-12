@@ -73,7 +73,7 @@ else
                                        sxiv-git xwinwrap-git wavemon-git \
                                        cmatrix-git nerd-fonts-complete   \
                                        downgrade figlet-fonts            \
-                                       testdisk-wip
+                                       testdisk-wip flameshot-git
 
     pip install pywal colorthief colorz haishoku
 
