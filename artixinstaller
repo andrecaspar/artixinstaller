@@ -103,6 +103,9 @@ else
     sudo -u a git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
     sudo -u a vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
 
+    sudo -u a git clone https://github.com/Yggdroot/indentLine.git ~/.vim/pack/vendor/start/indentLine
+    sudo -u a vim -u NONE -c "helptags  ~/.vim/pack/vendor/start/indentLine/doc" -c "q"
+
     pacman -R -noconfirm sudo
 
     ln -sf /usr/share/zoneinfo/America/Nuuk /etc/localtime
