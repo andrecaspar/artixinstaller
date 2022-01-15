@@ -106,10 +106,6 @@ else
     sudo -u a git clone https://github.com/Yggdroot/indentLine.git ~/.vim/pack/vendor/start/indentLine
     sudo -u a vim -u NONE -c "helptags  ~/.vim/pack/vendor/start/indentLine/doc" -c "q"
 
-    sudo -u a sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-    pacman -R -noconfirm sudo
-
     ln -sf /usr/share/zoneinfo/America/Nuuk /etc/localtime
     hwclock --systohc
 
@@ -130,5 +126,7 @@ else
 
     mkdir /mnt/usb1 /mnt/usb2 /mnt/usb3 /mnt/usb4 /mnt/sdcard
 
-    reboot
+    sudo -u a sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    pacman -R -noconfirm sudo
 fi
