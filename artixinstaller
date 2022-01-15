@@ -20,7 +20,7 @@ if [ "$1" != "part2" ]; then
                    bspwm rofi feh sxhkd python python-pip   \
                    git htop neofetch p7zip figlet wget mpv  \
                    youtube-dl ffmpeg pavucontrol xclip go   \
-                   imagemagick gparted
+                   imagemagick gparted zsh
 
     fstabgen -U /mnt >> /mnt/etc/fstab
 
@@ -105,6 +105,8 @@ else
 
     sudo -u a git clone https://github.com/Yggdroot/indentLine.git ~/.vim/pack/vendor/start/indentLine
     sudo -u a vim -u NONE -c "helptags  ~/.vim/pack/vendor/start/indentLine/doc" -c "q"
+
+    sudo -u a sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     pacman -R -noconfirm sudo
 
