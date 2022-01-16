@@ -16,7 +16,7 @@ if [ "$1" != "part2" ]; then
     basestrap /mnt base base-devel linux-zen linux-firmware \
                    openrc elogind-openrc xorg pulseaudio    \
                    dhcpcd connman-openrc wpa_supplicant     \
-                   grub os-prober ntfs-3g doas man zsh      \
+                   grub os-prober ntfs-3g doas man zsh vim  \
                    bspwm rofi feh sxhkd python python-pip   \
                    git htop neofetch p7zip figlet wget mpv  \
                    youtube-dl ffmpeg pavucontrol xclip go   \
