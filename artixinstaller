@@ -16,11 +16,11 @@ if [ "$1" != "part2" ]; then
     basestrap /mnt base base-devel linux-zen linux-firmware \
                    openrc elogind-openrc xorg pulseaudio    \
                    dhcpcd connman-openrc wpa_supplicant     \
-                   grub os-prober ntfs-3g doas gvim man     \
+                   grub os-prober ntfs-3g doas man zsh      \
                    bspwm rofi feh sxhkd python python-pip   \
                    git htop neofetch p7zip figlet wget mpv  \
                    youtube-dl ffmpeg pavucontrol xclip go   \
-                   imagemagick gparted zsh obs-studio
+                   imagemagick gparted obs-studio
 
     fstabgen -U /mnt >> /mnt/etc/fstab
 
