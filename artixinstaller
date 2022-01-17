@@ -133,6 +133,8 @@ else
     mv agetty.tty1 agetty-autologin.tty1 
     rc-update add agetty-autologin.tty1 default
 
+    echo 'options thinkpad_acpi fan_control=1' > /etc/modprobe.d/thinkpad_acpi.conf
+
     sudo -u a sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     echo -e 'if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n    sx\n    logout\nfi' >> /etc/zsh/zprofile
