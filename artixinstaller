@@ -135,6 +135,8 @@ else
 
     sudo -u a sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+    echo -e 'if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n    sx\n    logout\nfi' >> /etc/zsh/zprofile
+
     pacman -R -noconfirm sudo
 
     exit
