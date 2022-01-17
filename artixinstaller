@@ -127,7 +127,15 @@ else
 
     mkdir /mnt/usb1 /mnt/usb2 /mnt/usb3 /mnt/usb4 /mnt/sdcard
 
+    echo 'agetty_options="--autologin a --noclear"' > /etc/conf.d/agetty-autologin
+    cd /etc/init.d
+    openrc-init delete agetty.tty
+    mv agetty.tty1 agetty-autologin.tty1 
+    rc-update add agetty-autologin.tty1 default
+
     sudo -u a sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     pacman -R -noconfirm sudo
+
+    exit
 fi
