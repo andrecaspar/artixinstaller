@@ -76,7 +76,8 @@ else
                                        cmatrix-git nerd-fonts-complete   \
                                        downgrade figlet-fonts            \
                                        testdisk-wip flameshot-git        \
-                                       barrier-bin
+                                       barrier-bin xdotool-git           \
+                                       fontpreview-git
 
     pip install pywal colorthief colorz haishoku
 
