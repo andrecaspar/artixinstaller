@@ -52,8 +52,14 @@ else
     sudo -u a mkdir Sources
     cd Sources
 
-    sudo -u a git clone https://github.com/zsadroh/xwal .
-    ln -s file /xwal/xwal /usr/local/bin/
+    sudo -u a git clone https://github.com/zsadroh/scripts .
+    ln -s file /cursors /usr/local/bin/
+    ln -s file /rofifan /usr/local/bin/
+    ln -s file /togif /usr/local/bin/
+    ln -s file /xwal /usr/local/bin/
+    chmod a+x /usr/local/bin/cursors
+    chmod a+x /usr/local/bin/rofifan
+    chmod a+x /usr/local/bin/togif
     chmod a+x /usr/local/bin/xwal
     rm LICENSE
 
