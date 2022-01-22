@@ -20,7 +20,7 @@ if [ "$1" != "part2" ]; then
                    bspwm rofi feh sxhkd python python-pip   \
                    git htop neofetch p7zip figlet wget mpv  \
                    youtube-dl ffmpeg pavucontrol xclip go   \
-                   imagemagick gparted obs-studio
+                   imagemagick gparted obs-studio cargo
 
     fstabgen -U /mnt >> /mnt/etc/fstab
 
@@ -148,6 +148,9 @@ else
     echo -e 'if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then\n    sx\n    logout\nfi' >> /etc/zsh/zprofile
 
     echo "export ZDOTDIR=/home/a/.config/zsh/" > /etc/zsh/zshenv
+
+    rm -rf .oh-my-zsh/
+    rm .shell.pre-oh-my-zsh .zshrc
 
     pacman -R -noconfirm sudo
 
