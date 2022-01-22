@@ -149,8 +149,7 @@ else
 
     echo "export ZDOTDIR=/home/a/.config/zsh/" > /etc/zsh/zshenv
 
-    rm -rf .oh-my-zsh/
-    rm .shell.pre-oh-my-zsh .zshrc
+    rm -rf .oh-my-zsh/ .rustup/ .shell.pre-oh-my-zsh .zshrc
 
     pacman -R -noconfirm sudo
 
