@@ -75,15 +75,16 @@ else
     cd ..
     rm -rf sx
 
-    yes | sudo -u a pikaur -S --noedit rust-nightly-bin librewolf-bin    \
+    yes | sudo -u a pikaur -S --noedit rustup-git librewolf-bin spacefm  \
                                        alacritty-ligatures-git iftop-git \
-                                       gallery-dl spacefm btop-git cava  \
                                        sxiv-git xwinwrap-git wavemon-git \
+                                       barrier-bin xdotool-git btop-git  \
                                        cmatrix-git nerd-fonts-complete   \
-                                       downgrade figlet-fonts            \
+                                       downgrade figlet-fonts cava       \
                                        testdisk-wip flameshot-git        \
-                                       barrier-bin xdotool-git           \
-                                       fontpreview-git
+                                       fontpreview-git gallery-dl
+
+    rustup toolchain install nightly
 
     pip install pywal colorthief colorz haishoku
 
