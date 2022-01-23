@@ -128,9 +128,6 @@ else
     echo -n "hostname=\"artix\"" > /etc/conf.d/hostname
     echo -e "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 artix" >> /etc/hosts
 
-    echo "permit persist a" > /etc/doas.conf
-    echo "permit nopass a cmd chmod args a+w /sys/class/backlight/intel_backlight/brightness" >> /etc/doas.conf
-
     grub-install /dev/sda
     echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
     update-grub
