@@ -38,6 +38,7 @@ else
     echo -n root:a | chpasswd
 
     echo "permit nopass a" > /etc/doas.conf
+    echo "permit nopass a cmd tee args /proc/acpi/ibm/fan" >> /etc/doas.conf
 
     chmod +w /etc/sudoers
     echo -n "a ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
