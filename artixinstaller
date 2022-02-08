@@ -19,7 +19,7 @@ if [ "$1" != "part2" ]; then
                    grub os-prober ntfs-3g doas man zsh vim  \
                    bspwm rofi feh sxhkd python python-pip   \
                    git htop neofetch p7zip figlet wget mpv  \
-                   yt-dlp ffmpeg pavucontrol xclip go   \
+                   yt-dlp ffmpeg pavucontrol xclip go aria2 \
                    imagemagick gparted obs-studio cargo
 
     fstabgen -U /mnt >> /mnt/etc/fstab
