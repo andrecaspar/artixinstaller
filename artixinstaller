@@ -20,7 +20,7 @@ if [ "$1" != "part2" ]; then
                    bspwm rofi feh sxhkd python python-pip   \
                    git htop neofetch p7zip figlet wget mpv  \
                    yt-dlp ffmpeg pavucontrol xclip go aria2 \
-                   imagemagick gparted obs-studio cargo
+                   imagemagick gparted obs-studio cargo firefox
 
     fstabgen -U /mnt >> /mnt/etc/fstab
 
