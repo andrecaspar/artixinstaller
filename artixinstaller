@@ -13,7 +13,7 @@ if [ "$1" != "part2" ]; then
     mkdir /mnt/home
     mount /dev/disk/by-label/home /mnt/home
 
-    basestrap /mnt base base-devel linux-zen linux-firmware \
+    basestrap /mnt base base-devel linux linux-firmware     \
                    openrc elogind-openrc xorg pulseaudio    \
                    dhcpcd connman-openrc wpa_supplicant     \
                    grub os-prober ntfs-3g doas man zsh vim  \
