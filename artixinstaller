@@ -84,7 +84,8 @@ else
                                        cmatrix-git nerd-fonts-complete   \
                                        downgrade figlet-fonts cava       \
                                        testdisk-wip flameshot-git        \
-                                       fontpreview-git gallery-dl
+                                       fontpreview-git gallery-dl        \
+                                       hardinfo-git
 
     rustup toolchain install nightly
 
